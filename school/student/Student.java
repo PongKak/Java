@@ -25,9 +25,9 @@ public class Student {
 		this.name = name;
 		this.studentID = studentID;
 		
-		if(majorName == "¼öÇĞ")
+		if(majorName == "ìˆ˜í•™")
 			this.majorCode = 0;
-		else if(majorName == "¿µ¾î")
+		else if(majorName == "ì˜ì–´")
 			this.majorCode = 1;
 		else
 			this.majorCode = -1;
@@ -39,12 +39,12 @@ public class Student {
 	}
 	
 	public void setScore(String subjectName,int score){
-		if(subjectName == "¼öÇĞ")
+		if(subjectName == "ìˆ˜í•™")
 			scoreList.add(0,score);
-		else if(subjectName == "¿µ¾î")
+		else if(subjectName == "ì˜ì–´")
 			scoreList.add(1, score);
 		else
-			System.out.println("±×·± °ú¸ñ¸íÀ» ´Ù½Ã ÀÔ·ÂÇÏ¼¼¿ä");
+			System.out.println("ê·¸ëŸ° ê³¼ëª©ëª…ì„ ë‹¤ì‹œ ì…ë ¥í•˜ì„¸ìš”");
 		
 	}
 	
@@ -53,16 +53,18 @@ public class Student {
 	}
 	
 	public int getScore(String subjectName){
-		if(subjectName == "¼öÇĞ")
+		if(subjectName == "ìˆ˜í•™")
 			return scoreList.get(0);
-		else if(subjectName == "¿µ¾î")
+		else if(subjectName == "ì˜ì–´")
 			return scoreList.get(1);
 		else
-			System.out.println("±×·± °ú¸ñ¸íÀ» ´Ù½Ã ÀÔ·ÂÇÏ¼¼¿ä");
+			System.out.println("ê·¸ëŸ° ê³¼ëª©ëª…ì„ ë‹¤ì‹œ ì…ë ¥í•˜ì„¸ìš”");
 		
 		return 0;
 	}
 	
+	///////////////////////////
+	//í•™ì ì„ ì–»ëŠ” ë¶€ë¶„
 	IScore score;
 	
 	public char getGrade(int score){
@@ -95,7 +97,7 @@ public class Student {
 		
 	}
 
-	
+	/////////////////////////
 	
 	
 	public String getName() {
@@ -124,11 +126,11 @@ public class Student {
 	
 	public String getMajorName(){
 		if(this.majorCode == 0)
-			return "¼öÇĞ";
+			return "ìˆ˜í•™";
 		else if(this.majorCode ==1)
-			return "¿µ¾î";
+			return "ì˜ì–´";
 		
-		return "¾øÀ½";
+		return "ì—†ìŒ";
 		
 	}
 
