@@ -39,14 +39,14 @@ public class MakeMaze {
 	public void drawMaze(){
 		for(int i=1;i<sizeX-1;i++){
 			for(int j=1;j<sizeY-1;j++){
-				if(mazeArray[i][j] ==1)//|| mazeArray[i][j] == 2) °¬´Ù ¿Ô´ø ÀÚ¸®¸¦ Ç¥½Ã ¾ÈÇÒ¶§
-					System.out.print(" ¡à ");
+				if(mazeArray[i][j] ==1)//|| mazeArray[i][j] == 2) ê°”ë‹¤ ì™”ë˜ ìžë¦¬ë¥¼ í‘œì‹œ ì•ˆí• ë•Œ
+					System.out.print(" â–¡ ");
 				else if(mazeArray[i][j] == 0)
-					System.out.print(" ¡á ");
+					System.out.print(" â–  ");
 				else if(mazeArray[i][j] == 3)
 					System.out.print(" * ");
 				else
-					System.out.print(" ¢Æ ");
+					System.out.print(" â–’ ");
 			}
 			System.out.println();
 		}
@@ -58,14 +58,14 @@ public class MakeMaze {
 			for(int j=1;j<sizeY-1;j++){
 				if(i==x&&j==y)
 					System.out.print(" * ");
-				else if(mazeArray[i][j] ==1)//|| mazeArray[i][j] == 2) °¬´Ù ¿Ô´ø ÀÚ¸®¸¦ Ç¥½Ã ¾ÈÇÒ¶§
-					System.out.print(" ¡à ");
+				else if(mazeArray[i][j] ==1)//|| mazeArray[i][j] == 2) ê°”ë‹¤ ì™”ë˜ ìžë¦¬ë¥¼ í‘œì‹œ ì•ˆí• ë•Œ
+					System.out.print(" â–¡ ");
 				else if(mazeArray[i][j] == 0)
-					System.out.print(" ¡á ");
+					System.out.print(" â–  ");
 				else if(mazeArray[i][j] == 3)
 					System.out.print(" * ");
 				else
-					System.out.print(" ¢Æ ");
+					System.out.print(" â–’ ");
 			}
 			System.out.println();
 		}
@@ -77,23 +77,32 @@ public class MakeMaze {
 		this.mazeArray[x+1][y+1]=value;
 	}
 	
+	public boolean checkBefore(int x,int y,ArrayList<Integer> stackX,ArrayList<Integer> stackY){
+		for(int i=0;i<stackX.size();i++){
+			if(x==stackX.get(i) && y==stackY.get(i))
+				return false;
+		}
+		return true;
+	}
+	
+	
 	public void playMaze() throws IOException{
 		int x=1;
 		int y=0;
 		
 		int n,e,w,s;
-		
+		int ne,nw,se,sw;
 		ArrayList<Integer> stackX = new ArrayList<Integer>();
 		stackX.add(x);
 		ArrayList<Integer> stackY = new ArrayList<Integer>();
 		stackY.add(y);
 		y++;
-		int a=1;  //a = ½ÃÇà È½¼ö
+		int a=1;  //a = ì‹œí–‰ íšŸìˆ˜
 		
 		while(true){
 			System.out.println("play"+a);
 			a++;
-			drawMaze(x,y);  // ¸Å¹ø ½ÃÇà È½¼ö¿Í ÇöÀç À§Ä¡¸¦ Ç¥½Ã
+			drawMaze(x,y);  // ë§¤ë²ˆ ì‹œí–‰ íšŸìˆ˜ì™€ í˜„ìž¬ ìœ„ì¹˜ë¥¼ í‘œì‹œ
 			
 			if(stackX.isEmpty()){
 				System.out.println("can not clear Maze");
@@ -112,41 +121,79 @@ public class MakeMaze {
 			}
 			
 			n=mazeArray[x-1][y];
+			ne=mazeArray[x-1][y+1];
 			e=mazeArray[x][y+1];
-			w=mazeArray[x][y-1];
+			se=mazeArray[x+1][y+1];
 			s=mazeArray[x+1][y];
+			sw=mazeArray[x+1][y-1];
+			w=mazeArray[x][y-1];
+			nw=mazeArray[x-1][y-1];
+
+	
+//			int beforeX = stackX.get(stackX.size()-1) ;
+//			int beforeY = stackY.get(stackY.size()-1) ;
 			
-			int beforeX = stackX.get(stackX.size()-1) ;
-			int beforeY = stackY.get(stackY.size()-1) ;
-			
-			if(n == 1 && (x-1 != beforeX || y != beforeY)){
+			if(n == 1 && (checkBefore(x-1,y,stackX,stackY))){
 				stackX.add(x);
 				stackY.add(y);
 				x=x-1;
 				System.out.println("go n");
 				continue;
 			}
-			if(e == 1 && (x != beforeX || y+1 != beforeY)){
+			if(ne == 1 && (checkBefore(x-1,y+1,stackX,stackY))){
+				stackX.add(x);
+				stackY.add(y);
+				x=x-1;
+				y=y+1;
+				System.out.println("go n");
+				continue;
+			}
+			if(e == 1 && (checkBefore(x,y+1,stackX,stackY))){
 				stackX.add(x);
 				stackY.add(y);
 				y=y+1;
 				System.out.println("go e");
 				continue;
 			}
-			if(w == 1 && (x != beforeX || y-1 != beforeY)){
+			if(se == 1 && (checkBefore(x+1,y+1,stackX,stackY))){
 				stackX.add(x);
 				stackY.add(y);
-				y=y-1;
-				System.out.println("go w");
+				x=x+1;
+				y=y+1;
+				System.out.println("go n");
 				continue;
 			}
-			if(s == 1 && (x+1 != beforeX || y != beforeY)){
+			if(s == 1 && (checkBefore(x+1,y,stackX,stackY))){
 				stackX.add(x);
 				stackY.add(y);
 				x=x+1;
 				System.out.println("go s");
 				continue;
 			}
+			if(sw == 1 && (checkBefore(x+1,y-1,stackX,stackY))){
+				stackX.add(x);
+				stackY.add(y);
+				x=x+1;
+				y=y-1;
+				System.out.println("go n");
+				continue;
+			}
+			if(w == 1 && (checkBefore(x,y-1,stackX,stackY))){
+				stackX.add(x);
+				stackY.add(y);
+				y=y-1;
+				System.out.println("go w");
+				continue;
+			}
+			if(nw == 1 && (checkBefore(x-1,y-1,stackX,stackY))){
+				stackX.add(x);
+				stackY.add(y);
+				x=x-1;
+				y=y-1;
+				System.out.println("go n");
+				continue;
+			}
+			
 			
 			System.out.println("go back");
 			mazeArray[x][y] = 2;
