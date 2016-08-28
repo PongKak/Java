@@ -52,7 +52,7 @@ public class StationTest {
 		Asan.addNext(Gwangju, 25);
 	
 		/////////////////////////////
-		
+		//TEST ONLY
 		ArrayList<User> userList = new ArrayList<User>();
 		User user1 = new User(1,"user2001",0,2,Seoul,Chuncheon);
 		User user2 = new User(2,"user2002",0,1,Chuncheon,Wonju);
