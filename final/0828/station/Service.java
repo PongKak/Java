@@ -55,7 +55,7 @@ public class Service {
 					&& clerk2.available==true 
 					&& clerk3.available==true){
 		
-				System.out.println("ÃÑ ¼Ò¿ä ½Ã°£ : " + time);
+				System.out.println("total time : " + time);
 				break;
 				
 			}
@@ -67,6 +67,8 @@ public class Service {
 			if(clerk1.available == true && waitingUser.isEmpty() == false){
 				clerk1Result = clerk1.service(waitingUser.get(0));
 				clerk1User = waitingUser.get(0);
+				
+				System.out.println(waitingUser.get(0).name + " come to clerk1");
 				waitingUser.remove(0);
 				
 			}else{
@@ -74,7 +76,8 @@ public class Service {
 					clerk1.waiting --;
 				}
 				if(clerk1.waiting == 0 && clerk1User != null){
-//					this.print(clerk1User, clerk1Result);
+					System.out.print("clerk1 service : ");
+					this.print(clerk1User, clerk1Result);
 					ticketUser.add(clerk1User);
 					clerk1.available =true;
 					clerk1User = null;
@@ -83,8 +86,10 @@ public class Service {
 			
 			
 			if(clerk2.available == true && waitingUser.isEmpty() == false){
-				clerk2.service(waitingUser.get(0));
+				clerk2Result = clerk2.service(waitingUser.get(0));
 				clerk2User = waitingUser.get(0);
+
+				System.out.println(waitingUser.get(0).name + " come to clerk2");
 				waitingUser.remove(0);
 			}else{
 				if(clerk2.waiting>0){
@@ -92,7 +97,8 @@ public class Service {
 					
 				}
 				if(clerk2.waiting == 0 && clerk2User != null){
-//					this.print(clerk2User, clerk2Result);
+					System.out.print("clerk2 service : ");
+					this.print(clerk2User, clerk2Result);
 					ticketUser.add(clerk2User);
 					clerk2.available =true;
 					clerk2User = null;
@@ -100,8 +106,10 @@ public class Service {
 			}
 			
 			if(clerk3.available == true && waitingUser.isEmpty() == false){
-				clerk3.service(waitingUser.get(0));
+				clerk3Result = clerk3.service(waitingUser.get(0));
 				clerk3User = waitingUser.get(0);
+
+				System.out.println(waitingUser.get(0).name + " come to clerk3");
 				waitingUser.remove(0);
 			
 			}else{
@@ -110,7 +118,8 @@ public class Service {
 					
 				}
 				if(clerk3.waiting == 0 && clerk3User != null){
-//					this.print(clerk3User, clerk3Result);
+					System.out.print("clerk3 service : ");
+					this.print(clerk3User, clerk3Result);
 					ticketUser.add(clerk3User);
 					clerk3.available =true;
 					clerk3User = null;
@@ -123,8 +132,8 @@ public class Service {
 	
 	
 	public void print(User user,int time){
-		System.out.print(user.Id+ " 	");
-		System.out.println(user.departure.name + " -> " + user.arrival.name + " time : " + time);
+		System.out.print(user.name+ " 	");
+		System.out.println(user.departure.name + " -> " + user.arrival.name + " -  time : " + time);
 	}
 
 }
