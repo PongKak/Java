@@ -1,3 +1,4 @@
+import java.io.IOException;
 import java.util.ArrayList;
 
 import station.Service;
@@ -6,7 +7,7 @@ import user.User;
 
 public class StationTest {
 
-	public static void main(String[] args){
+	public static void main(String[] args) throws IOException{
 		
 		Station Seoul = new Station("Seoul");
 		Station Chuncheon = new Station("Chuncheon");
@@ -51,18 +52,18 @@ public class StationTest {
 		Asan.addNext(Gwangju, 25);
 	
 		/////////////////////////////
-		//TEST
+		
 		ArrayList<User> userList = new ArrayList<User>();
-		User user1 = new User(1,"2001",0,2,Seoul,Chuncheon);
-		User user2 = new User(2,"2002",0,1,Chuncheon,Wonju);
-		User user3 = new User(3,"2003",0,3,Wonju,Gwangju);
-		User user4 = new User(4,"2004",0,5,Gyeongju,Wonju);
-		User user5 = new User(5,"2005",0,1,Chuncheon,Daejeon);
-		User user6 = new User(6,"2006",1,10,Asan,Daejeon);
-		User user7 = new User(7,"2007",1,1,Seoul,Gyeongju);
-		User user8 = new User(8,"2008",1,2,Gwangju,Chuncheon);
-		User user9 = new User(9,"2009",3,1,Daejeon,Seoul);
-		User user10 = new User(10,"2010",3,3,Gwangju,Asan);
+		User user1 = new User(1,"user2001",0,2,Seoul,Chuncheon);
+		User user2 = new User(2,"user2002",0,1,Chuncheon,Wonju);
+		User user3 = new User(3,"user2003",0,3,Wonju,Gwangju);
+		User user4 = new User(4,"user2004",0,5,Gyeongju,Wonju);
+		User user5 = new User(5,"user2005",0,1,Chuncheon,Daejeon);
+		User user6 = new User(6,"user2006",1,10,Asan,Daejeon);
+		User user7 = new User(7,"user2007",1,1,Seoul,Gyeongju);
+		User user8 = new User(8,"user2008",1,2,Gwangju,Chuncheon);
+		User user9 = new User(9,"user2009",3,1,Daejeon,Seoul);
+		User user10 = new User(10,"user2010",3,3,Gwangju,Asan);
 		
 		userList.add(user1);
 		userList.add(user2);
@@ -75,8 +76,12 @@ public class StationTest {
 		userList.add(user9);
 		userList.add(user10);
 		
+		
 		Service service = new Service();
+		
 		service.service(userList);
+		
+	
 		
 	}
 
