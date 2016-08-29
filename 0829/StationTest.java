@@ -68,7 +68,7 @@ public class StationTest {
 	
 		ArrayList<User> userList = new ArrayList<User>();
 		FileInputStream fis = null;
-		fis = new FileInputStream("user");
+		fis = new FileInputStream("user.txt");
 		InputStreamReader isr;
 		char[] buffer = new char[2048];
 		try {
@@ -101,7 +101,7 @@ public class StationTest {
 		
 		FileOutputStream fos = null;
 		OutputStreamWriter osw = null;
-		fos =  new FileOutputStream("userAfter");
+		fos =  new FileOutputStream("userAfter.txt");
 		osw = new OutputStreamWriter(fos);
 		
 		
