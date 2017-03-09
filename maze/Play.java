@@ -5,8 +5,10 @@ import java.io.IOException;
 public class Play {
 
 	public static void main(String[] args) throws IOException {
+		//creates a new maze of size 10 by 10
+		//Diagonals are not allowed
 		Maze maze = new Maze4(10,10);
-		
+		//sets the value of every tile of the maze
 		{
 			maze.setMaze(0, 0, 1);
 			maze.setMaze(0, 1, 1);
@@ -121,12 +123,15 @@ public class Play {
 		}
 		
 		maze.setGoal(9, 9);
+		//prints out unsolved maze
 		maze.drawMaze();
+		//solves the maze and prints the resutls
 		maze.playMaze();
-		//maze.playMazeStepbyStep(); // ¸ğµç °æ·Î¸¦ µû¶ó°¡¸é¼­ Ç¥½Ã
+		//maze.playMazeStepbyStep(); // ëª¨ë“  ê²½ë¡œë¥¼ ë”°ë¼ê°€ë©´ì„œ í‘œì‹œ
 		
 		
-		
+		//creates a new maze of size 10 by 10
+		//Diagonals are allowed
 		maze = new Maze8(10,10);
 
 		{
@@ -244,7 +249,8 @@ public class Play {
 		
 		maze.setGoal(9, 9);
 		
-		//maze.playMazeStepbyStep(); // ¸ğµç °á·Î¸¦ µû¶ó°¡¸é¼­ Ç¥½Ã
+		//maze.playMazeStepbyStep(); // ëª¨ë“  ê²°ë¡œë¥¼ ë”°ë¼ê°€ë©´ì„œ í‘œì‹œ
+		//solves the maze and prints results
 		maze.playMaze();
 	}
 
